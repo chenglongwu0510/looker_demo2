@@ -4,6 +4,22 @@ view: clicks {
   # to be used for all fields in this view.
   # sql_table_name: `looker_demo_2.clicks` ;;
 
+  filter: select_platform {
+    type: string
+    suggest_dimension: platform
+  }
+
+  derived_table: {
+    sql:
+      SELECT
+        *
+      FROM
+        clicks
+      WHERE
+        {% condition select_platform %} clicks.platform {% endcondition %}
+    ;;
+  }
+
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
 
