@@ -58,5 +58,6 @@ view: impressions {
   }
   measure: count {
     type: count
+    drill_fields: [country, city]
   }
 }
