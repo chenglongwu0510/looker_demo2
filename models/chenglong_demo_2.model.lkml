@@ -25,7 +25,12 @@ persist_with: chenglong_demo_2_default_datagroup
 # Typically, join parameters require that you define the join type, join relationship, and a sql_on clause.
 # Each joined view also needs to define a primary key.
 
-explore: country_cities {}
+explore: country_cities {
+  # access_filter: {
+  #   field: string_field_0
+  #   user_attribute: chenglong_demo_user_attribute
+  # }
+}
 
 explore: sql_datetime {}
 
@@ -37,5 +42,11 @@ explore: funnel {}
 
 explore: impressions {}
 
-explore: clicks {}
+explore: clicks {
+  # access_filter: {
+  #   field: country
+  #   user_attribute: chenglong_demo_user_attribute
+  # }
+}
 
+explore : dynamic_view {}
