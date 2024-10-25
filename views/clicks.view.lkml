@@ -43,7 +43,7 @@ view: clicks {
   dimension: gender {
     type: string
     # sql: ${TABLE}.gender ;;
-    sql: {% if _user_attributes['chenglong_demo_data_classification'] == 'full_access' %} ${TABLE}.gender {% else %} `[REDACTED]` {% endif %};;
+    sql: {% if _user_attributes['chenglong_demo_data_classification'] == 'full_access' %} ${TABLE}.gender {% else %} "[REDACTED]" {% endif %};;
   }
 
   dimension: platform {
