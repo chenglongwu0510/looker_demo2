@@ -44,11 +44,11 @@ view: impressions {
   dimension: age_filtered {
     type:  number
     sql:  {% if age_range._parameter_value == "'< 20'" %}
-            SELECT ${TABLE}.age WHERE ${TABLE}.age < 20
+            (SELECT ${TABLE}.age WHERE ${TABLE}.age < 20)
           {% elsif age_range._parameter_value == "'< 30'" %}
-            SELECT ${TABLE}.age WHERE ${TABLE}.age < 30
+            (SELECT ${TABLE}.age WHERE ${TABLE}.age < 30)
           {% else %}
-             ${TABLE}.age > 0
+            (SELECT ${TABLE}.age WHERE ${TABLE}.age > 0)
           {% endif %}
     ;;
 
