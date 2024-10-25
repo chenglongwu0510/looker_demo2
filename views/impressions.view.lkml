@@ -31,10 +31,10 @@ view: impressions {
   }
 
 
-  filter: age_filter {
-    type: number
-    suggest_dimension: age
-  }
+  # filter: age_filter {
+  #   type: number
+  #   suggest_dimension: age
+  # }
 
   dimension: age {
     type: number
