@@ -49,8 +49,10 @@ view: clicks {
   dimension: platform {
     type: string
     sql: ${TABLE}.platform ;;
+    hidden:  no
   }
   measure: count {
     type: count
+    hidden:  no
   }
 }

@@ -37,10 +37,6 @@ access_grant: can_view_clicks_age {
 # Each joined view also needs to define a primary key.
 
 explore: country_cities {
-  # access_filter: {
-  #   field: string_field_0
-  #   user_attribute: chenglong_demo_user_attribute
-  # }
 }
 
 explore: sql_datetime {}
@@ -54,10 +50,10 @@ explore: funnel {}
 explore: impressions {}
 
 explore: clicks {
-  # access_filter: {
-  #   field: country
-  #   user_attribute: chenglong_demo_user_attribute
-  # }
+  access_filter: {
+    field: country
+    user_attribute: chenglong_demo_user_attribute
+  }
 }
 
 explore : dynamic_view {}
