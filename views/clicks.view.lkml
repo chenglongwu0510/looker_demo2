@@ -2,7 +2,7 @@
 view: clicks {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: `looker_demo_2.clicks` ;;
+  # sql_table_name: `looker_demo_2.clicks` ;;
 
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
@@ -13,7 +13,9 @@ view: clicks {
 
   dimension: age {
     type: number
-    sql: ${TABLE}.age ;;
+    # sql: ${TABLE}.age ;;
+    sql: {% if _user_attributes['chenglong_demo_data_classification'] == 'full_access' %} ${TABLE}.age {% else %} NULL {% endif %};;
+
   }
 
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
