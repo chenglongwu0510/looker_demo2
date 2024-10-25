@@ -2,18 +2,7 @@
 view: impressions {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: `looker_demo_2.impressions` ;;
 
-  # No primary key is defined for this view. In order to join this view in an Explore,
-  # define primary_key: yes on a dimension that has no repeated values.
-
-    # Here's what a typical dimension looks like in LookML.
-    # A dimension is a groupable field that can be used to filter query results.
-    # This dimension will be called "Age" in Explore.
-  # parameter: number_per_page {
-  #   default_value: "10"
-  #   type: number
-  # }
   parameter: age_range {
     type: string
     allowed_value: {
@@ -30,6 +19,36 @@ view: impressions {
     }
   }
 
+  # sql_table_name: `looker_demo_2.impressions` ;;
+  derived_table: {
+    sql:
+      SELECT
+        *
+      FROM
+        impressions
+      WHERE
+        {% if age_range._parameter_value == "'< 20'" %}
+             age < 20
+          {% elsif age_range._parameter_value == "'< 30'" %}
+             age < 30
+          {% else %}
+             age > 0
+          {% endif %}
+    ;;
+  }
+        # {% condition age_filter %} order.age {% endcondition %}
+  # No primary key is defined for this view. In order to join this view in an Explore,
+  # define primary_key: yes on a dimension that has no repeated values.
+
+    # Here's what a typical dimension looks like in LookML.
+    # A dimension is a groupable field that can be used to filter query results.
+    # This dimension will be called "Age" in Explore.
+  # parameter: number_per_page {
+  #   default_value: "10"
+  #   type: number
+  # }
+
+
 
   # filter: age_filter {
   #   type: number
@@ -41,18 +60,6 @@ view: impressions {
     sql: ${TABLE}.age ;;
   }
 
-  dimension: age_filtered {
-    type:  number
-    sql:  {% if age_range._parameter_value == "'< 20'" %}
-            (SELECT ${TABLE}.age WHERE ${TABLE}.age < 20)
-          {% elsif age_range._parameter_value == "'< 30'" %}
-            (SELECT ${TABLE}.age WHERE ${TABLE}.age < 30)
-          {% else %}
-            (SELECT ${TABLE}.age WHERE ${TABLE}.age > 0)
-          {% endif %}
-    ;;
-
-  }
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
