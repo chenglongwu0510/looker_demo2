@@ -16,7 +16,6 @@ view: clicks {
     type: number
     sql: ${TABLE}.age ;;
     required_access_grants: [can_view_clicks_age]
-    # sql: {% if _user_attributes['chenglong_demo_data_classification'] == 'full_access' %} ${TABLE}.age {% else %} NULL {% endif %};;
   }
 
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
@@ -43,7 +42,8 @@ view: clicks {
 
   dimension: gender {
     type: string
-    sql: ${TABLE}.gender ;;
+    # sql: ${TABLE}.gender ;;
+    sql: {% if _user_attributes['chenglong_demo_data_classification'] == 'full_access' %} ${TABLE}.gender {% else %} `[REDACTED]` {% endif %};;
   }
 
   dimension: platform {
