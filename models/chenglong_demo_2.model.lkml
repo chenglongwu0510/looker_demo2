@@ -21,7 +21,7 @@ access_grant: can_view_clicks {
 
 access_grant: can_view_clicks_age {
   user_attribute: chenglong_demo_access_grant
-  allowed_values: ["YES"]
+  allowed_values: ["NO"]
 }
 
 

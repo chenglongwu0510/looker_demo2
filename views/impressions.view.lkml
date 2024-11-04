@@ -27,13 +27,7 @@ view: impressions {
       FROM
         impressions
       WHERE
-        {% if age_range._parameter_value == "'< 20'" %}
-             age < 20
-          {% elsif age_range._parameter_value == "'< 30'" %}
-             age < 30
-          {% else %}
-             age > 0
-          {% endif %}
+        age < {{ _user_attributes['chenglong_demo_age_filter'] }}
     ;;
   }
         # {% condition age_filter %} order.age {% endcondition %}
